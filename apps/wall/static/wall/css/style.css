@@ -1,0 +1,28 @@
+form{
+    width: 40%;
+    height:200px;
+}
+.login{
+    margin-left: 70%;
+    vertical-align: top;
+    margin-top: -400px;
+}
+form:first-of-type{
+    margin-left: 10%;
+}
+input{
+    display: block;
+}
+.errorbox{
+    width: 400px;
+    border: 1px solid black;
+    margin-left: 450px;
+    height: 400px;
+    margin-top: -200px;
+    color: red;
+
+}
+.jumbotron{
+    background: rgb(98,147,242);
+background: linear-gradient(180deg, rgba(98,147,242,1) 38%, rgba(66,157,8,1) 100%);
+}
