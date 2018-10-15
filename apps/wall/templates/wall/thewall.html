@@ -11,6 +11,14 @@
     <title>Document</title>
 </head>
 <body>
-    <h1 class="jumbotron">WELCOME TO THE WALL</h1>
+    <h1 class="jumbotron">WELCOME TO THE WALL {{user.firstname}}</h1>
+    {%for message in messages%}
+    <p>{{message.content}}</p>
+    <ul>
+        {%for comment in message.comments%}
+        <li>{{comment.content}}sa</li>
+        {%endfor%}
+    </ul>
+    {%endfor%}
 </body>
 </html>

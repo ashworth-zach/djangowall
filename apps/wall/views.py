@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 import bcrypt
-from .models import User, Message, Comment
+from .models import *
 from django.contrib import messages
 def index(request):
     return render(request, 'wall/index.html')
@@ -17,6 +17,7 @@ def add(request):
     else:
         # if the errors object is empty, that means there were no errors!
         # retrieve the user to be updated, make the changes, and save
+        request.session['email']=request.POST['email']
         user = User.objects.create()
         user.firstname = request.POST['firstname']
         user.lastname = request.POST['lastname']
@@ -34,9 +35,12 @@ def login(request):
             messages.error(request, value)
         # redirect the user back to the form to fix the errors
         return redirect('/')
+    request.session['email']=request.POST['email']
     return redirect('/thewall')
 def show(request):
     context={
-        'user':request.session['user']
+        'user':User.objects.all().values().get(email=request.session['email']),
+        'messages':Message.objects.all().values(),
+        'comments':Comment.objects.all().values()
     }
     return render(request, 'wall/thewall.html', context)
