@@ -40,7 +40,20 @@ def login(request):
 def show(request):
     context={
         'user':User.objects.all().values().get(email=request.session['email']),
-        'messages':Message.objects.all().values(),
-        'comments':Comment.objects.all().values()
+        'messages':Message.objects.all(),
+        'user_has_messages':User.objects.all(),
+        'comments':Comment.objects.all()
     }
     return render(request, 'wall/thewall.html', context)
+def newmessage(request):
+    content = request.POST['messagecontent']
+    print(request.POST['hidden'])
+    this_user=User.objects.get(id=request.POST['hidden'])
+    Message.objects.create(content=content,user=this_user)
+    return redirect('/thewall')
+def newcomment(request):
+    content = request.POST['commentcontent']
+    print(request.POST['hidden'])
+    this_message=Message.objects.get(id=request.POST['hidden'])
+    Comment.objects.create(content=content,message=this_message)
+    return redirect('/thewall')

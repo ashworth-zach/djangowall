@@ -5,4 +5,8 @@ urlpatterns = [
     url(r'^process$', views.add), 
     url(r'^login$', views.login),
     url(r'^thewall$', views.show),
+    url(r'^newmessage$', views.newmessage),
+    url(r'^newcomment$', views.newcomment),
+
+
 ]  
